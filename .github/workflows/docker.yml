@@ -20,10 +20,10 @@ jobs:
         docker-compose -f dockerfiles/staging/docker-compose.yml up --exit-code-from client client
         docker-compose -f dockerfiles/staging/docker-compose.yml down
         docker images
-        docker tag labgrid-client ${{ secrets.DOCKERHUB_PREFIX }}client
-        docker tag labgrid-exporter ${{ secrets.DOCKERHUB_PREFIX }}exporter
-        docker tag labgrid-coordinator ${{ secrets.DOCKERHUB_PREFIX }}coordinator
-        docker push ${{ secrets.DOCKERHUB_PREFIX }}client
-        docker push ${{ secrets.DOCKERHUB_PREFIX }}exporter
-        docker push ${{ secrets.DOCKERHUB_PREFIX }}coordinator
+        docker tag labgrid-client ${{ secrets.DOCKERHUB_PREFIX }}client:${{ secrets.LABGRID_TAG }}
+        docker tag labgrid-exporter ${{ secrets.DOCKERHUB_PREFIX }}exporter:${{ secrets.LABGRID_TAG }}
+        docker tag labgrid-coordinator ${{ secrets.DOCKERHUB_PREFIX }}coordinator:${{ secrets.LABGRID_TAG }}
+        docker push ${{ secrets.DOCKERHUB_PREFIX }}client:${{ secrets.LABGRID_TAG }}
+        docker push ${{ secrets.DOCKERHUB_PREFIX }}exporter:${{ secrets.LABGRID_TAG }}
+        docker push ${{ secrets.DOCKERHUB_PREFIX }}coordinator:${{ secrets.LABGRID_TAG }}
         docker images
